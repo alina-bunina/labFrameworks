@@ -1,0 +1,208 @@
+package repository;
+
+import java.sql.*;
+
+public class ConnectionFactory {
+    private static final String url = "jdbc:postgresql://localhost:5432/labjava";
+    private static final String user = "postgres";
+    private static final String password = "0419";
+
+
+    public static Connection getConnection() {
+        try {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при подключении к PostgreSQL", e);
+        }
+    }
+}
+
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.5.6</version>
+            </dependency>
+
+
+
+    <c:if test="${not empty errorMessage}">
+        <div class="error">
+                ${errorMessage}
+        </div>
+    </c:if>
+
+
+
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up!</title>
+    <meta charset="UTF-8">
+    <style>
+        .registration-form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="registration-form">
+    <h2>Sign up!</h2>
+
+    <form method="post" action="${pageContext.request.contextPath}/registration">
+        <div class="form-group">
+            <input type="text" name="login" placeholder="Enter login" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Enter password" required autocomplete="off" id="passwordField" minlength="6" required>
+            <span class="toggle-password" onclick="togglePassword()">
+            </span>
+        </div>
+        <button type="submit">Sign up!</button>
+    </form>
+
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null && !error.isEmpty()) {
+    %>
+    <p class="error"><%=error%>
+    </p><%
+    }%>
+</div>
+</body>
+</html>
+
+
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <style>
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-form">
+    <h2>Login</h2>
+
+    <c:if test="${not empty requestScope.message}">
+        <c:out value="${requestScope.message}" />
+    </c:if>
+
+
+
+    <form method="post" action="${pageContext.request.contextPath}/login">
+        <div class="form-group">
+            <input type="text" name="login" placeholder="Enter login" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+
+
+    <div class="register-link">
+        <p>Нет аккаунта?</p>
+        <a href="${pageContext.request.contextPath}/registration">
+            <button type="button">Sign Up!</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <style>
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-form">
+    <h2>Login</h2>
+
+    <c:if test="${not empty requestScope.message}">
+        <c:out value="${requestScope.message}" />
+    </c:if>
+
+
+
+    <form method="post" action="${pageContext.request.contextPath}/login">
+        <div class="form-group">
+            <input type="text" name="login" placeholder="Enter login" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+exception\DBException.class
+filters\LoggedFilter.class
+org\example\Main.class
+servlets\SignUp.class
+servlets\Test.class
+servlets\LoginServlet.class
+entity\Profile.class
+servlets\WelcomePageServlet.class
+repository\ConnectionFactory.class
+service\ProfileService.class
+repository\ProfileRepository.class
